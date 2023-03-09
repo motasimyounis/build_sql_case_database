@@ -94,9 +94,10 @@ INSERT INTO `users_roles` VALUES (2,'donor');
  
 INSERT INTO `users` (`first_name`, `last_name`, `email`, `phone`, `address`, `created_at`, `updated_at`, `user_role_id`)
 VALUES 
-  ('John', 'Doe', 'johndoe@example.com', '08123456789', '123 Main St, Anytown, USA', '2023-03-08', '2023-03-08', 2),
-  ('Jane', 'Doe', 'janedoe@example.com', '08123456789', '123 Main St, Anytown, USA', '2023-03-08', '2023-03-08', 2),
-  ('Bob', 'Smith', 'bobsmith@example.com', '08123456789', '123 Main St, Anytown, USA', '2023-03-08', '2023-03-08', 2),
+  ('Farah', 'Ismail', 'johndoe@example.com', '08123456789', '123 Main St, Anytown, USA', '2023-01-05', '2023-01-05', 1),
+  ('John', 'Doe', 'johndoe@example.com', '08123456789', '123 Main St, Anytown, USA', '2023-06-09', '2023-03-08', 2),
+  ('Jane', 'Doe', 'janedoe@example.com', '08123456789', '123 Main St, Anytown, USA', '2023-03-09', '2023-03-09', 2),
+  ('Bob', 'Smith', 'bobsmith@example.com', '08123456789', '123 Main St, Anytown, USA', '2023-04-12', '2023-03-08', 2),
   ('Alice', 'Johnson', 'alicejohnson@example.com', '08123456789', '123 Main St, Anytown, USA', '2023-03-08', '2023-03-08', 2),
   ('Sarah', 'Lee', 'sarahlee@example.com', '08123456789', '123 Main St, Anytown, USA', '2023-03-08', '2023-03-08', 2),
   ('David', 'Brown', 'davidbrown@example.com', '08123456789', '123 Main St, Anytown, USA', '2023-03-08', '2023-03-08', 2),
@@ -124,14 +125,14 @@ INSERT INTO `campaigns` (`title`, `target_money`, `description`, `campaign_statu
 VALUES
     ('Education for underprivileged children', 5000.00, 'Help us provide education to underprivileged children in our community.', 1, 1),
     ('Healthcare for the Elderly', 7500.00, 'Support our campaign to provide healthcare services for the elderly in our community.', 1, 1),
-    ('Warm Clothes for Winter', 3000.00, 'Help us provide warm clothes to people in need during the cold winter months.', 1, 1),
-    ('Clean Water for Rural Communities', 10000.00, 'Join our campaign to provide access to clean drinking water for rural communities in our area.', 1, 1),
-    ('Food Assistance for Low-Income Families', 5000.00, 'Help us provide food assistance to low-income families in our community.', 1, 1),
-    ('Supporting Local Businesses', 10000.00, 'Support our campaign to help local businesses affected by the pandemic.', 1, 1),
+    ('Warm Clothes for Winter', 3000.00, 'Help us provide warm clothes to people in need during the cold winter months.', 1, 3),
+    ('Clean Water for Rural Communities', 10000.00, 'Join our campaign to provide access to clean drinking water for rural communities in our area.', 1, 2),
+    ('Food Assistance for Low-Income Families', 5000.00, NULL, 1, 4),
+    ('Supporting Local Businesses', 10000.00, 'Support our campaign to help local businesses affected by the pandemic.', 1, 6),
     ('Emergency Relief for Disaster Victims', 20000.00, 'Join us in providing emergency relief for victims of natural disasters in our area.', 1, 1),
-    ('Animal Shelter Support', 5000.00, 'Help us support our local animal shelter by donating to our campaign.', 1, 1),
-    ('Mental Health Awareness', 7500.00, 'Join our campaign to raise awareness about mental health and support those in need in our community.', 1, 1),
-    ('Renovating a Community Center', 15000.00, 'Support our campaign to renovate a community center that serves as a vital resource for our community.', 1, 1);
+    ('Animal Shelter Support', 5000.00, 'Help us support our local animal shelter by donating to our campaign.', 1, 2),
+    ('Mental Health Awareness', 7500.00, 'Join our campaign to raise awareness about mental health and support those in need in our community.', 1, 5),
+    ('Renovating a Community Center', 15000.00, 'Support our campaign to renovate a community center that serves as a vital resource for our community.', 1, 4);
     
 INSERT INTO `capons` (`campaign_id`, `family_id`, `amount`) VALUES
 (1, 1, 100.00),
@@ -158,3 +159,4 @@ VALUES (1, 1, 1, 50.00),
        (8, 4, 4, 200.00),
        (9, 1, 3, 30.00),
        (10, 2, 1, 15.00);
+
