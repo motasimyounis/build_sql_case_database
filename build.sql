@@ -110,7 +110,8 @@ VALUES
   ('Emily', 'Davis', 'emilydavis@example.com', '08123456789', '123 Main St, Anytown, USA', '2023-03-08', '2023-03-08', 2),
   ('Kevin', 'Jones', 'kevinjones@example.com', '08123456789', '123 Main St, Anytown, USA', '2023-03-08', '2023-03-08', 2);
   
-INSERT INTO `families` VALUES
+INSERT INTO `families` (`family_id`,`first_name` , `last_name` , `phone` , `address`)
+VALUES 
 (1,'Emma', 'Johnson', '555-1234', '123 Main St'),
 (2,'Liam', 'Smith', '555-5678', '456 Elm St'),
 (3,'Olivia', 'Garcia', '555-9012', '789 Oak St'),
