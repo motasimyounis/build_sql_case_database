@@ -72,7 +72,11 @@ CREATE TABLE `capons`(
   `campaign_id` tinyint(4) NOT NULL,
   `family_id` tinyint(4) NOT NULL,
   `amount`  decimal(9,2) NOT NULL,
-  PRIMARY KEY (`campaign_id`,`family_id`)
+  PRIMARY KEY (`campaign_id`,`family_id`),
+   KEY `FK_campaign_id` (`campaign_id`),
+    KEY `FK_family_id` (`family_id`),
+    CONSTRAINT `FK_campaign_id` FOREIGN KEY (`campaign_id`) REFERENCES `campaigns` (`campaign_id`) ON DELETE RESTRICT ON UPDATE CASCADE,
+    CONSTRAINT `FK_family_id` FOREIGN KEY (`family_id`) REFERENCES `families` (`family_id`) ON DELETE RESTRICT ON UPDATE CASCADE
 )ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 
@@ -84,8 +88,8 @@ CREATE TABLE `donations`(
 	  PRIMARY KEY (`donation_id`),
 	  KEY `FK_user_id` (`user_id`),	
 	  CONSTRAINT `FK_user_id` FOREIGN KEY (`user_id`) REFERENCES `users` (`user_id`) ON DELETE RESTRICT ON UPDATE CASCADE,
-	   KEY `FK_campaign_id` (`campaign_id`),	
-	   CONSTRAINT `FK_campaign_id` FOREIGN KEY (`campaign_id`) REFERENCES `campaigns` (`campaign_id`) ON DELETE RESTRICT ON UPDATE CASCADE
+	   KEY `FK_campaign_donation_id` (`campaign_id`),	
+	   CONSTRAINT `FK_campaign_donation_id` FOREIGN KEY (`campaign_id`) REFERENCES `campaigns` (`campaign_id`) ON DELETE RESTRICT ON UPDATE CASCADE
 	)ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
     
 INSERT INTO `users_roles` VALUES (1,'admin');
@@ -94,10 +98,10 @@ INSERT INTO `users_roles` VALUES (2,'donor');
  
 INSERT INTO `users` (`first_name`, `last_name`, `email`, `phone`, `address`, `created_at`, `updated_at`, `user_role_id`)
 VALUES 
-  ('Farah', 'Ismail', 'johndoe@example.com', '08123456789', '123 Main St, Anytown, USA', '2023-01-05', '2023-01-05', 1),
-  ('John', 'Doe', 'johndoe@example.com', '08123456789', '123 Main St, Anytown, USA', '2023-06-09', '2023-03-08', 2),
-  ('Jane', 'Doe', 'janedoe@example.com', '08123456789', '123 Main St, Anytown, USA', '2023-03-09', '2023-03-09', 2),
-  ('Bob', 'Smith', 'bobsmith@example.com', '08123456789', '123 Main St, Anytown, USA', '2023-04-12', '2023-03-08', 2),
+  ('Farah', 'Ismail', 'farah@example.com', '08123456789', '123 Main St, Anytown, USA', '2023-01-05', '2023-01-05', 1),
+  ('John', 'Doe', 'johndoe@example.com', '08123456789', '123 Main St, Anytown, USA', '2022-06-09', '2023-03-08', 2),
+  ('Jane', 'Doe', 'janedoe@example.com', '08123456789', '123 Main St, Anytown, USA', '2022-03-09', '2023-03-09', 2),
+  ('Bob', 'Smith', 'bobsmith@example.com', '08123456789', '123 Main St, Anytown, USA', '2021-04-12', '2023-03-08', 2),
   ('Alice', 'Johnson', 'alicejohnson@example.com', '08123456789', '123 Main St, Anytown, USA', '2023-03-08', '2023-03-08', 2),
   ('Sarah', 'Lee', 'sarahlee@example.com', '08123456789', '123 Main St, Anytown, USA', '2023-03-08', '2023-03-08', 2),
   ('David', 'Brown', 'davidbrown@example.com', '08123456789', '123 Main St, Anytown, USA', '2023-03-08', '2023-03-08', 2),
@@ -106,17 +110,17 @@ VALUES
   ('Emily', 'Davis', 'emilydavis@example.com', '08123456789', '123 Main St, Anytown, USA', '2023-03-08', '2023-03-08', 2),
   ('Kevin', 'Jones', 'kevinjones@example.com', '08123456789', '123 Main St, Anytown, USA', '2023-03-08', '2023-03-08', 2);
   
-INSERT INTO `families` (`first_name`, `last_name`, `phone`, `address`) VALUES
-('Emma', 'Johnson', '555-1234', '123 Main St'),
-('Liam', 'Smith', '555-5678', '456 Elm St'),
-('Olivia', 'Garcia', '555-9012', '789 Oak St'),
-('Noah', 'Martinez', '555-3456', '321 Maple Ave'),
-('Ava', 'Brown', '555-7890', '654 Pine St'),
-('William', 'Davis', '555-2345', '987 Cedar Ln'),
-('Sophia', 'Rodriguez', '555-6789', '246 Oakwood Dr'),
-('James', 'Miller', '555-0123', '369 Cherry St'),
-('Isabella', 'Wilson', '555-4567', '582 Maple Rd'),
-('Benjamin', 'Anderson', '555-8901', '715 Birchwood Ln');
+INSERT INTO `families` VALUES
+(1,'Emma', 'Johnson', '555-1234', '123 Main St'),
+(2,'Liam', 'Smith', '555-5678', '456 Elm St'),
+(3,'Olivia', 'Garcia', '555-9012', '789 Oak St'),
+(4,'Noah', 'Martinez', '555-3456', '321 Maple Ave'),
+(5,'Ava', 'Brown', '555-7890', '654 Pine St'),
+(6,'William', 'Davis', '555-2345', '987 Cedar Ln'),
+(7,'Sophia', 'Rodriguez', '555-6789', '246 Oakwood Dr'),
+(8,'James', 'Miller', '555-0123', '369 Cherry St'),
+(9,'Isabella', 'Wilson', '555-4567', '582 Maple Rd'),
+(10,'Benjamin', 'Anderson', '555-8901', '715 Birchwood Ln');
 
 INSERT INTO `campaign_statuses` VALUES (1,'open');
 INSERT INTO `campaign_statuses` VALUES (2,'closed');
@@ -148,7 +152,7 @@ INSERT INTO `capons` (`campaign_id`, `family_id`, `amount`) VALUES
 (4, 2, 350.00),
 (4, 3, 375.00);
 
-INSERT INTO donations (donation_id, user_id, campaign_id, amount)
+INSERT INTO `donations` (donation_id, user_id, campaign_id, amount)
 VALUES (1, 1, 1, 50.00),
        (2, 2, 2, 25.00),
        (3, 3, 1, 100.00),
